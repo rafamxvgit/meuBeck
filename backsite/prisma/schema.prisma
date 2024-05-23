@@ -17,7 +17,7 @@ model User {
   senha String
   curso String
   departamento String
-  foto String
+  foto String?
   posts Post[]
 }
 
@@ -38,6 +38,6 @@ model Professor {
   senha String
   curso String
   departamento String
-  foto String
+  foto String?
   reviews Post[]
 }
