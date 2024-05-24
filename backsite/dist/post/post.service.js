@@ -12,16 +12,16 @@ const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 let PostService = class PostService {
     create(createPostDto) {
-        return 'This action adds a new post';
+        return prisma.post.create({ data: createPostDto });
     }
     findAll() {
         return `This action returns all post`;
     }
     findOneAlvo(id) {
-        return prisma.post.findFirst({ where: { idAlvo: id } });
+        return prisma.post.findMany({ where: { idAlvo: id } });
     }
     findOneAutor(id) {
-        return prisma.post.findFirst({ where: { idAutor: id } });
+        return prisma.post.findMany({ where: { idAutor: id } });
     }
     update(id, updatePostDto) {
         return `This action updates a #${id} post`;

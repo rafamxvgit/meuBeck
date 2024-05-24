@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 @Injectable()
 export class PostService {
   create(createPostDto: CreatePostDto) {
-    return 'This action adds a new post';
+    return prisma.post.create({data: createPostDto});
   }
 
   findAll() {
@@ -15,11 +15,11 @@ export class PostService {
   }
 
   findOneAlvo(id: number) {
-    return prisma.post.findFirst({where: {idAlvo: id}})
+    return prisma.post.findMany({where: {idAlvo: id}})
   }
   
   findOneAutor(id: number) { 
-    return prisma.post.findFirst({where: {idAutor: id}})
+    return prisma.post.findMany({where: {idAutor: id}})
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {
