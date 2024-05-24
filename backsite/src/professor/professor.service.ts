@@ -15,8 +15,8 @@ export class ProfessorService {
     return await prisma.professor.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} professor`;
+  async findOne(id: number) {
+    return await prisma.professor.findUnique({where: {id: id}});
   }
 
   update(id: number, updateProfessorDto: UpdateProfessorDto) {

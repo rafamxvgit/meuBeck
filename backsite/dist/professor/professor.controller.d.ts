@@ -22,7 +22,15 @@ export declare class ProfessorController {
         departamento: string;
         foto: string;
     }[]>;
-    findOne(id: string): string;
+    findOne(id: string): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        senha: string;
+        curso: string;
+        departamento: string;
+        foto: string;
+    }>;
     update(id: string, updateProfessorDto: UpdateProfessorDto): string;
     remove(id: string): string;
 }

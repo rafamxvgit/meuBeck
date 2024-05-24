@@ -19,7 +19,15 @@ export declare class ProfessorService {
         departamento: string;
         foto: string;
     }[]>;
-    findOne(id: number): string;
+    findOne(id: number): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        senha: string;
+        curso: string;
+        departamento: string;
+        foto: string;
+    }>;
     update(id: number, updateProfessorDto: UpdateProfessorDto): string;
     remove(id: number): string;
 }
