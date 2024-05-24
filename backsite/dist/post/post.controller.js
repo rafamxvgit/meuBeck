@@ -27,8 +27,11 @@ let PostController = class PostController {
     findAll() {
         return this.postService.findAll();
     }
-    findOne(id) {
-        return this.postService.findOne(+id);
+    findOneAlvo(id) {
+        return this.postService.findOneAlvo(+id);
+    }
+    findOneAutor(id) {
+        return this.postService.findOneAutor(+id);
     }
     update(id, updatePostDto) {
         return this.postService.update(+id, updatePostDto);
@@ -52,12 +55,19 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], PostController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)('alvo:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], PostController.prototype, "findOne", null);
+], PostController.prototype, "findOneAlvo", null);
+__decorate([
+    (0, common_1.Get)('autor:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], PostController.prototype, "findOneAutor", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),

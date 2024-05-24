@@ -17,9 +17,14 @@ export class PostController {
     return this.postService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.postService.findOne(+id);
+  @Get('alvo:id')
+  findOneAlvo(@Param('id') id: string) {
+    return this.postService.findOneAlvo(+id);
+  }
+  
+  @Get('autor:id')
+  findOneAutor(@Param('id') id: string) {
+    return this.postService.findOneAutor(+id);
   }
 
   @Patch(':id')

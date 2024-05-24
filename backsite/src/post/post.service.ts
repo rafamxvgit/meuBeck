@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient()
 @Injectable()
 export class PostService {
   create(createPostDto: CreatePostDto) {
@@ -12,8 +14,12 @@ export class PostService {
     return `This action returns all post`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} post`;
+  findOneAlvo(id: number) {
+    return prisma.post.findFirst({where: {idAlvo: id}})
+  }
+  
+  findOneAutor(id: number) { 
+    return prisma.post.findFirst({where: {idAutor: id}})
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {

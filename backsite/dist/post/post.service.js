@@ -8,6 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostService = void 0;
 const common_1 = require("@nestjs/common");
+const client_1 = require("@prisma/client");
+const prisma = new client_1.PrismaClient();
 let PostService = class PostService {
     create(createPostDto) {
         return 'This action adds a new post';
@@ -15,8 +17,11 @@ let PostService = class PostService {
     findAll() {
         return `This action returns all post`;
     }
-    findOne(id) {
-        return `This action returns a #${id} post`;
+    findOneAlvo(id) {
+        return prisma.post.findFirst({ where: { idAlvo: id } });
+    }
+    findOneAutor(id) {
+        return prisma.post.findFirst({ where: { idAutor: id } });
     }
     update(id, updatePostDto) {
         return `This action updates a #${id} post`;
