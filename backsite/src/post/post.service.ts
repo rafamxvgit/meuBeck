@@ -29,7 +29,7 @@ export class PostService {
     let realPosts: comentario[] = [];
     const alvo = await prisma.professor.findUnique({where: {id: id}});
     for (let i = 0; i < posts.length; i++){
-      const autor = await prisma.professor.findUnique({where: {id: posts[i].idAutor}});
+      const autor = await prisma.user.findUnique({where: {id: posts[i].idAutor}});
       let realpost: comentario = posts[i];
       realpost.nomeAutor = autor.nome;
       realpost.nomeAlvo = alvo.nome;
