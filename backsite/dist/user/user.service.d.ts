@@ -1,5 +1,6 @@
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 export declare class UserService {
     create(createUserDto: CreateUserDto): Promise<{
         id: number;
@@ -12,6 +13,15 @@ export declare class UserService {
     }>;
     findAll(): string;
     findOne(id: number): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        senha: string;
+        curso: string;
+        departamento: string;
+        foto: string;
+    }>;
+    checkLog(loginUserDto: LoginUserDto): Promise<{
         id: number;
         nome: string;
         email: string;

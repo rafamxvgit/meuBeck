@@ -20,6 +20,9 @@ let UserService = class UserService {
     async findOne(id) {
         return await prisma.user.findFirst({ where: { id: id } });
     }
+    async checkLog(loginUserDto) {
+        return await prisma.user.findFirst({ where: { email: loginUserDto.email, senha: loginUserDto.senha } });
+    }
     async update(id, updateUserDto) {
         return await prisma.user.update({ data: updateUserDto, where: { id: id } });
     }

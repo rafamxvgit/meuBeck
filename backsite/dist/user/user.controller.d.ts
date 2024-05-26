@@ -1,6 +1,7 @@
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 export declare class UserController {
     private readonly userService;
     constructor(userService: UserService);
@@ -15,6 +16,15 @@ export declare class UserController {
     }>;
     findAll(): string;
     findOne(id: string): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        senha: string;
+        curso: string;
+        departamento: string;
+        foto: string;
+    }>;
+    checkLog(loginDto: LoginUserDto): Promise<{
         id: number;
         nome: string;
         email: string;
