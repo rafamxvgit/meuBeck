@@ -17,11 +17,31 @@ let PostService = class PostService {
     findAll() {
         return `This action returns all post`;
     }
-    findOneAlvo(id) {
-        return prisma.post.findMany({ where: { idAlvo: id } });
+    async findAllAlvo(id) {
+        let posts = await prisma.post.findMany({ where: { idAlvo: id } });
+        let realPosts = [];
+        const alvo = await prisma.professor.findUnique({ where: { id: id } });
+        for (let i = 0; i < posts.length; i++) {
+            const autor = await prisma.professor.findUnique({ where: { id: posts[i].idAutor } });
+            let realpost = posts[i];
+            realpost.nomeAutor = autor.nome;
+            realpost.nomeAlvo = alvo.nome;
+            realPosts.push(realpost);
+        }
+        return (realPosts);
     }
-    findOneAutor(id) {
-        return prisma.post.findMany({ where: { idAutor: id } });
+    async findAllAutor(id) {
+        let posts = await prisma.post.findMany({ where: { idAutor: id } });
+        let realPosts = [];
+        const autor = await prisma.user.findUnique({ where: { id: id } });
+        for (let i = 0; i < posts.length; i++) {
+            const alvo = await prisma.professor.findUnique({ where: { id: posts[i].idAlvo } });
+            let realpost = posts[i];
+            realpost.nomeAutor = autor.nome;
+            realpost.nomeAlvo = alvo.nome;
+            realPosts.push(realpost);
+        }
+        return (realPosts);
     }
     update(id, updatePostDto) {
         return `This action updates a #${id} post`;
