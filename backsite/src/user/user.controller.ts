@@ -6,7 +6,7 @@ import { LoginUserDto } from './dto/login-user.dto';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
@@ -24,8 +24,13 @@ export class UserController {
   }
 
   @Post('login')
-  checkLog(@Body() loginDto: LoginUserDto){
+  checkLog(@Body() loginDto: LoginUserDto) {
     return this.userService.checkLog(loginDto);
+  }
+
+  @Patch('senha:id')
+  updateSenha(@Param('id') id: string, @Body() novaSenha: {senha: string}) {
+    return this.userService.updateUserPassword(+id, novaSenha)
   }
 
   @Patch(':id')

@@ -33,6 +33,17 @@ export declare class UserController {
         departamento: string;
         foto: string;
     }>;
+    updateSenha(id: string, novaSenha: {
+        senha: string;
+    }): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        senha: string;
+        curso: string;
+        departamento: string;
+        foto: string;
+    }>;
     update(id: string, updateUserDto: UpdateUserDto): Promise<{
         id: number;
         nome: string;

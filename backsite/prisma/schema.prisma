@@ -27,7 +27,7 @@ model Post {
   idAlvo Int
   data String
   conteudo String
-  autor User @relation(fields: [idAutor], references: [id])
+  autor User @relation(fields: [idAutor], references: [id], onDelete: Cascade)
   alvo Professor @relation(fields: [idAlvo], references: [id]) 
 }
 

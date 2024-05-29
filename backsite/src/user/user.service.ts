@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Prisma, PrismaClient } from '@prisma/client';
 import { LoginUserDto } from './dto/login-user.dto';
+import { retry } from 'rxjs';
 
 const prisma = new PrismaClient()
 
@@ -20,6 +21,10 @@ export class UserService {
     return await prisma.user.findFirst({where:{id: id}});
   }
 
+  async updateUserPassword(id: number, novaSenha:{senha: string}){
+    return await prisma.user.update({where: {id: id}, data:{senha: novaSenha.senha}})
+  }
+
   async checkLog(loginUserDto: LoginUserDto) {
     return await prisma.user.findFirst({where:{email: loginUserDto.email, senha: loginUserDto.senha}})
   }
@@ -27,7 +32,7 @@ export class UserService {
   async update(id: number, updateUserDto: UpdateUserDto) {
     return await prisma.user.update({data: updateUserDto, where:{id: id}});
   }
-
+  
   async remove(id: number) {
     return await prisma.user.delete({where: {id: id}})
   }
