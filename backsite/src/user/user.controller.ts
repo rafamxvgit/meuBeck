@@ -33,6 +33,11 @@ export class UserController {
     return this.userService.updateUserPassword(+id, novaSenha)
   }
 
+  @Patch('imagem:id')
+  updateImagem(@Param('id') id: string, @Body() novaImagem: {imagem: string}) {
+    return this.userService.updateUserImagem(+id, novaImagem)
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
