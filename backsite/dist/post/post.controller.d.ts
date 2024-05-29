@@ -15,5 +15,5 @@ export declare class PostController {
     findManyAlvo(id: string): Promise<import("./post.service").comentario[]>;
     findManyAutor(id: string): Promise<import("./post.service").comentario[]>;
     update(id: string, updatePostDto: UpdatePostDto): string;
-    remove(id: string): string;
+    remove(id: string): Promise<void>;
 }

@@ -44,4 +44,5 @@ export class UserService {
   async updateUserNome(id: number, novoNome: {nome: string}) {
     return await prisma.user.update({where: {id:id}, data: {nome: novoNome.nome}})
   }
+
 }

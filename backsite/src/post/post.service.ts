@@ -57,7 +57,7 @@ export class PostService {
     return `This action updates a #${id} post`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} post`;
+  async remove(id: number) {
+    await prisma.post.delete({where: {id: id}});
   }
 }
