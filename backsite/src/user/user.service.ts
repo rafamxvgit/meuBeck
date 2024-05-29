@@ -36,4 +36,13 @@ export class UserService {
   async remove(id: number) {
     return await prisma.user.delete({where: {id: id}})
   }
+
+  async updateUserImagem(id: number, novaImagem: {imagem: string}) {
+    return await prisma.user.update({where: {id:id}, data: {foto: novaImagem.imagem}})
+  }
+
+  async updateUserNome(id: number, novoNome: {nome: string}) {
+    return await prisma.user.update({where: {id:id}, data: {nome: novoNome.nome}})
+  }
+
 }

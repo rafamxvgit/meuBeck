@@ -38,6 +38,11 @@ export class UserController {
     return this.userService.updateUserImagem(+id, novaImagem)
   }
 
+@Patch('nome:id')
+updateNome(@Param('id') id: string, @Body() novoNome: {nome: string}) {
+  return this.userService.updateUserNome(+id, novoNome)
+}
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
