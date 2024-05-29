@@ -7,37 +7,37 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = "file:./dev.db"
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  nome String
-  email String @unique
-  senha String
-  curso String
+  id           Int     @id @default(autoincrement())
+  nome         String
+  email        String  @unique
+  senha        String
+  curso        String
   departamento String
-  foto String?
-  posts Post[]
+  foto         String?
+  posts        Post[]
 }
 
 model Post {
-  id Int @id @default(autoincrement())
-  idAutor Int
-  idAlvo Int
-  data String
+  id       Int       @id @default(autoincrement())
+  idAutor  Int
+  idAlvo   Int
+  data     String
   conteudo String
-  autor User @relation(fields: [idAutor], references: [id], onDelete: Cascade)
-  alvo Professor @relation(fields: [idAlvo], references: [id]) 
+  autor    User      @relation(fields: [idAutor], references: [id], onDelete: Cascade)
+  alvo     Professor @relation(fields: [idAlvo], references: [id])
 }
 
 model Professor {
-  id Int @id @default(autoincrement())
-  nome String
-  email String @unique
-  senha String
-  curso String
+  id           Int     @id @default(autoincrement())
+  nome         String
+  email        String  @unique
+  senha        String
+  curso        String
   departamento String
-  foto String?
-  reviews Post[]
+  foto         String?
+  reviews      Post[]
 }
