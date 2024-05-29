@@ -46,7 +46,26 @@ export declare class UserController {
     }>;
     updateImagem(id: string, novaImagem: {
         imagem: string;
-    }): any;
+    }): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        senha: string;
+        curso: string;
+        departamento: string;
+        foto: string;
+    }>;
+    updateNome(id: string, novoNome: {
+        nome: string;
+    }): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        senha: string;
+        curso: string;
+        departamento: string;
+        foto: string;
+    }>;
     update(id: string, updateUserDto: UpdateUserDto): Promise<{
         id: number;
         nome: string;

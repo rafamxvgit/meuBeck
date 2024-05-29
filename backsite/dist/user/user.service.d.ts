@@ -59,4 +59,26 @@ export declare class UserService {
         departamento: string;
         foto: string;
     }>;
+    updateUserImagem(id: number, novaImagem: {
+        imagem: string;
+    }): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        senha: string;
+        curso: string;
+        departamento: string;
+        foto: string;
+    }>;
+    updateUserNome(id: number, novoNome: {
+        nome: string;
+    }): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        senha: string;
+        curso: string;
+        departamento: string;
+        foto: string;
+    }>;
 }

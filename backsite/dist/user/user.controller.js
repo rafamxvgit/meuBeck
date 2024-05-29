@@ -40,6 +40,9 @@ let UserController = class UserController {
     updateImagem(id, novaImagem) {
         return this.userService.updateUserImagem(+id, novaImagem);
     }
+    updateNome(id, novoNome) {
+        return this.userService.updateUserNome(+id, novoNome);
+    }
     update(id, updateUserDto) {
         return this.userService.update(+id, updateUserDto);
     }
@@ -91,6 +94,14 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "updateImagem", null);
+__decorate([
+    (0, common_1.Patch)('nome:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", void 0)
+], UserController.prototype, "updateNome", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),

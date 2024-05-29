@@ -29,19 +29,19 @@ export class UserController {
   }
 
   @Patch('senha:id')
-  updateSenha(@Param('id') id: string, @Body() novaSenha: {senha: string}) {
+  updateSenha(@Param('id') id: string, @Body() novaSenha: { senha: string }) {
     return this.userService.updateUserPassword(+id, novaSenha)
   }
 
   @Patch('imagem:id')
-  updateImagem(@Param('id') id: string, @Body() novaImagem: {imagem: string}) {
+  updateImagem(@Param('id') id: string, @Body() novaImagem: { imagem: string }) {
     return this.userService.updateUserImagem(+id, novaImagem)
   }
 
-@Patch('nome:id')
-updateNome(@Param('id') id: string, @Body() novoNome: {nome: string}) {
-  return this.userService.updateUserNome(+id, novoNome)
-}
+  @Patch('nome:id')
+  updateNome(@Param('id') id: string, @Body() novoNome: { nome: string }) {
+    return this.userService.updateUserNome(+id, novoNome)
+  }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
