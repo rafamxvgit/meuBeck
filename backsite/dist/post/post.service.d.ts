@@ -21,5 +21,5 @@ export declare class PostService {
     findAllAlvo(id: number): Promise<comentario[]>;
     findAllAutor(id: number): Promise<comentario[]>;
     update(id: number, updatePostDto: UpdatePostDto): string;
-    remove(id: number): string;
+    remove(id: number): Promise<void>;
 }

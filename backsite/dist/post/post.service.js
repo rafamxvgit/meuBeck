@@ -46,8 +46,8 @@ let PostService = class PostService {
     update(id, updatePostDto) {
         return `This action updates a #${id} post`;
     }
-    remove(id) {
-        return `This action removes a #${id} post`;
+    async remove(id) {
+        await prisma.post.delete({ where: { id: id } });
     }
 };
 exports.PostService = PostService;
