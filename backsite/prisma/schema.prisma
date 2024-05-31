@@ -19,6 +19,7 @@ model User {
   departamento String
   foto String?
   posts Post[]
+  comentarios Comentario[]
 }
 
 model Post {
@@ -29,6 +30,17 @@ model Post {
   conteudo String
   autor User @relation(fields: [idAutor], references: [id], onDelete: Cascade)
   alvo Professor @relation(fields: [idAlvo], references: [id]) 
+  comentarios Comentario[]
+}
+
+model Comentario {
+  id Int @id @default(autoincrement())
+  idAutor Int
+  idAlvo Int
+  data String
+  conteudo String
+  autor User @relation(fields: [idAutor], references: [id], onDelete: Cascade)
+  alvo Post @relation(fields: [idAlvo], references: [id])
 }
 
 model Professor {
