@@ -12,8 +12,8 @@ export declare class PostController {
         conteudo: string;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
     findAll(): string;
-    findManyAlvo(id: string): Promise<import("./post.service").comentario[]>;
-    findManyAutor(id: string): Promise<import("./post.service").comentario[]>;
+    findManyAlvo(id: string): Promise<import("./post.service").aval[]>;
+    findManyAutor(id: string): Promise<import("./post.service").aval[]>;
     update(id: string, updatePostDto: UpdatePostDto): string;
     remove(id: string): Promise<void>;
 }

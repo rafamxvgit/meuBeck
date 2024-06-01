@@ -40,7 +40,7 @@ model Comentario {
   data String
   conteudo String
   autor User @relation(fields: [idAutor], references: [id], onDelete: Cascade)
-  alvo Post @relation(fields: [idAlvo], references: [id])
+  alvo Post @relation(fields: [idAlvo], references: [id], onDelete: Cascade)
 }
 
 model Professor {

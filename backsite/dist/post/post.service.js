@@ -18,14 +18,25 @@ let PostService = class PostService {
         return `This action returns all post`;
     }
     async findAllAlvo(id) {
-        let posts = await prisma.post.findMany({ where: { idAlvo: id } });
+        const posts = await prisma.post.findMany({ where: { idAlvo: id } });
         let realPosts = [];
         const alvo = await prisma.professor.findUnique({ where: { id: id } });
         for (let i = 0; i < posts.length; i++) {
             const autor = await prisma.user.findUnique({ where: { id: posts[i].idAutor } });
+            const coments = await prisma.comentario.findMany({ where: { idAlvo: posts[i].id } });
+            let realComents = [];
+            for (let ii = 0; ii < coments.length; ii++) {
+                const autorComent = await prisma.user.findUnique({ where: { id: coments[ii].idAutor } });
+                let realComent = coments[i];
+                realComent.nomeAutor = autorComent.nome;
+                realComent.foto = autorComent.foto;
+                realComents.push(realComent);
+            }
             let realpost = posts[i];
             realpost.nomeAutor = autor.nome;
+            realpost.foto = autor.foto;
             realpost.nomeAlvo = alvo.nome;
+            realpost.comentarios = realComents;
             realPosts.push(realpost);
         }
         return (realPosts);
@@ -36,9 +47,20 @@ let PostService = class PostService {
         const autor = await prisma.user.findUnique({ where: { id: id } });
         for (let i = 0; i < posts.length; i++) {
             const alvo = await prisma.professor.findUnique({ where: { id: posts[i].idAlvo } });
+            const coments = await prisma.comentario.findMany({ where: { idAlvo: posts[i].id } });
+            let realComents = [];
+            for (let ii = 0; ii < coments.length; ii++) {
+                const autorComent = await prisma.user.findUnique({ where: { id: coments[ii].idAutor } });
+                let realComent = coments[ii];
+                realComent.nomeAutor = autorComent.nome;
+                realComent.foto = autorComent.foto;
+                realComents.push(realComent);
+            }
             let realpost = posts[i];
             realpost.nomeAutor = autor.nome;
+            realpost.foto = autor.foto;
             realpost.nomeAlvo = alvo.nome;
+            realpost.comentarios = realComents;
             realPosts.push(realpost);
         }
         return (realPosts);
