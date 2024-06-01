@@ -46,7 +46,7 @@ export class PostService {
       let realComents: coment[] = []; 
       for (let ii = 0; ii < coments.length; ii++) {
         const autorComent = await prisma.user.findUnique({where: {id: coments[ii].idAutor}})
-        let realComent: coment = coments[i]
+        let realComent: coment = coments[ii]
         realComent.nomeAutor = autorComent.nome
         realComent.foto = autorComent.foto
         realComents.push(realComent)
