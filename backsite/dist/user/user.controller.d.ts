@@ -12,6 +12,7 @@ export declare class UserController {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
     findAll(): string;
@@ -22,6 +23,7 @@ export declare class UserController {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
     checkLog(loginDto: LoginUserDto): Promise<{
@@ -31,6 +33,7 @@ export declare class UserController {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
     updateSenha(id: string, novaSenha: {
@@ -42,6 +45,7 @@ export declare class UserController {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
     updateImagem(id: string, novaImagem: {
@@ -53,6 +57,7 @@ export declare class UserController {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
     updateNome(id: string, novoNome: {
@@ -64,6 +69,19 @@ export declare class UserController {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
+        foto: string;
+    }>;
+    updateBio(id: string, novaBio: {
+        bio: string;
+    }): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        senha: string;
+        curso: string;
+        departamento: string;
+        bio: string;
         foto: string;
     }>;
     update(id: string, updateUserDto: UpdateUserDto): Promise<{
@@ -73,6 +91,7 @@ export declare class UserController {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
     remove(id: string): Promise<{
@@ -82,6 +101,7 @@ export declare class UserController {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
 }

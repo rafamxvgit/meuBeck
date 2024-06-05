@@ -17,6 +17,7 @@ model User {
   senha String
   curso String
   departamento String
+  bio String @default("")
   foto String?
   posts Post[]
   comentarios Comentario[]

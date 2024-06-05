@@ -9,6 +9,7 @@ export declare class UserService {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
     findAll(): string;
@@ -19,6 +20,7 @@ export declare class UserService {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
     updateUserPassword(id: number, novaSenha: {
@@ -30,6 +32,7 @@ export declare class UserService {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
     checkLog(loginUserDto: LoginUserDto): Promise<{
@@ -39,6 +42,7 @@ export declare class UserService {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
     update(id: number, updateUserDto: UpdateUserDto): Promise<{
@@ -48,6 +52,7 @@ export declare class UserService {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
     remove(id: number): Promise<{
@@ -57,6 +62,7 @@ export declare class UserService {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
     updateUserImagem(id: number, novaImagem: {
@@ -68,6 +74,7 @@ export declare class UserService {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
         foto: string;
     }>;
     updateUserNome(id: number, novoNome: {
@@ -79,6 +86,19 @@ export declare class UserService {
         senha: string;
         curso: string;
         departamento: string;
+        bio: string;
+        foto: string;
+    }>;
+    updateUserBio(id: number, novaBio: {
+        bio: string;
+    }): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        senha: string;
+        curso: string;
+        departamento: string;
+        bio: string;
         foto: string;
     }>;
 }

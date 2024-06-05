@@ -43,6 +43,11 @@ export class UserController {
     return this.userService.updateUserNome(+id, novoNome)
   }
 
+  @Patch('bio:id')
+  updateBio(@Param('id') id: string, @Body() novaBio: { bio: string }){
+    return this.userService.updateUserBio(+id, novaBio)
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
