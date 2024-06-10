@@ -1,11 +1,20 @@
-import { Passport } from "passport";
-import { Strategy } from "passport-jwt";
+import { Strategy } from "passport-local";
+import { AuthService } from "../auth.service";
+import { PassportStrategy } from "@nestjs/passport";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 
 
-export class LocalStrategy extends Passport(Strategy) {
-    constructor(super({usernameField: 'email'})) {}
+@Injectable()
+export class LocalStrategy extends PassportStrategy(Strategy) {
+    constructor(private readonly authService: AuthService) {
+        super({usernameField: 'email'});
+    }
 
-    async validate(email: string, senha: string) {
-        const
+    async validate(email: string, senha: string) {//password ou senha
+        const user = await this.authService.validateUser(email, senha)//password ou senha
+
+        if (!user) throw new UnauthorizedException('Tem algo errado')
+
+        return user;
     }
 }
