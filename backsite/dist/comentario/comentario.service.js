@@ -21,7 +21,28 @@ let ComentarioService = class ComentarioService {
         return `This action returns a #${id} comentario`;
     }
     async findByUser(userID) {
-        return await prisma.comentario.findMany({ where: { idAutor: userID } });
+        let expComments = [];
+        const comments = await prisma.comentario.findMany({ where: { idAutor: userID } });
+        for (let i = 0; i < comments.length; i++) {
+            const user = await prisma.user.findUnique({ where: { id: +userID } });
+            const aval = await prisma.post.findUnique({ where: { id: comments[i].idAlvo } });
+            const userAlvo = await prisma.user.findUnique({ where: { id: aval.idAutor } });
+            const fullCom = {
+                conteudo: comments[i].conteudo,
+                data: comments[i].data,
+                id: comments[i].id,
+                idAutor: +userID,
+                idAlvo: comments[i].idAlvo,
+                nomeAutor: user.nome,
+                nomeAlvo: userAlvo.nome,
+                fotoAlvo: userAlvo.foto,
+                conteudoAlvo: aval.conteudo,
+                foto: user.foto,
+                idUserAlvo: user.id
+            };
+            expComments.push(fullCom);
+        }
+        return expComments;
     }
     async findByPost(postID) {
         return await prisma.comentario.findMany({ where: { idAlvo: postID } });

@@ -19,13 +19,7 @@ export declare class ComentarioController {
         data: string;
         conteudo: string;
     }[]>;
-    findByUser(id: string): Promise<{
-        id: number;
-        idAutor: number;
-        idAlvo: number;
-        data: string;
-        conteudo: string;
-    }[]>;
+    findByUser(id: string): Promise<import("./comentario.service").exportComment[]>;
     update(id: string, updateComentarioDto: UpdateComentarioDto): string;
     remove(id: string): Promise<{
         id: number;
