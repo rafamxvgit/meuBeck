@@ -44,6 +44,9 @@ export declare class UserController {
         departamento: string;
         foto: string;
     }>;
+    updateImagem(id: string, novaImagem: {
+        imagem: string;
+    }): any;
     update(id: string, updateUserDto: UpdateUserDto): Promise<{
         id: number;
         nome: string;
