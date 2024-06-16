@@ -5,22 +5,16 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { ProfessorModule } from './professor/professor.module';
 import { PostModule } from './post/post.module';
-<<<<<<< HEAD
+import { ComentarioModule } from './comentario/comentario.module';
 import { AuthModule } from './auth/auth.module';
 import { JWTStrategy } from './auth/strategies/jwt.strategy';
 
 @Module({
-  imports: [UserModule, ProfessorModule, PostModule, AuthModule,
+  imports: [UserModule, ProfessorModule, PostModule, ComentarioModule, AuthModule,
     ConfigModule.forRoot({
       isGlobal: true,
     })
   ],
-=======
-import { ComentarioModule } from './comentario/comentario.module';
-
-@Module({
-  imports: [UserModule, ProfessorModule, PostModule, ComentarioModule],
->>>>>>> branchAuth
   controllers: [AppController],
   providers: [AppService, JWTStrategy],
 })

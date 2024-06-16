@@ -14,6 +14,7 @@ const app_service_1 = require("./app.service");
 const user_module_1 = require("./user/user.module");
 const professor_module_1 = require("./professor/professor.module");
 const post_module_1 = require("./post/post.module");
+const comentario_module_1 = require("./comentario/comentario.module");
 const auth_module_1 = require("./auth/auth.module");
 const jwt_strategy_1 = require("./auth/strategies/jwt.strategy");
 let AppModule = class AppModule {
@@ -21,7 +22,7 @@ let AppModule = class AppModule {
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [user_module_1.UserModule, professor_module_1.ProfessorModule, post_module_1.PostModule, auth_module_1.AuthModule,
+        imports: [user_module_1.UserModule, professor_module_1.ProfessorModule, post_module_1.PostModule, comentario_module_1.ComentarioModule, auth_module_1.AuthModule,
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
             })
