@@ -46,6 +46,9 @@ let UserService = class UserService {
     async updateUserNome(id, novoNome) {
         return await prisma.user.update({ where: { id: id }, data: { nome: novoNome.nome } });
     }
+    async updateUserBio(id, novaBio) {
+        return await prisma.user.update({ where: { id: id }, data: { bio: novaBio.bio } });
+    }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([

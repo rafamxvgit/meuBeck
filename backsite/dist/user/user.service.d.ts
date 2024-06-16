@@ -89,4 +89,16 @@ export declare class UserService {
         bio: string;
         foto: string;
     }>;
+    updateUserBio(id: number, novaBio: {
+        bio: string;
+    }): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        senha: string;
+        curso: string;
+        departamento: string;
+        bio: string;
+        foto: string;
+    }>;
 }

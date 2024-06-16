@@ -15,39 +15,52 @@ let PostService = class PostService {
         return prisma.post.create({ data: createPostDto });
     }
     findAll() {
-        return `This action returns all post`;
+        return prisma.post.findMany();
+    }
+    async getComentarios(postId) {
+        const comentarios = await prisma.comentario.findMany({ where: { idAlvo: postId } });
+        const comentariosCompletos = await Promise.all(comentarios.map(async (coment) => {
+            const autor = await prisma.user.findUnique({ where: { id: coment.idAutor } });
+            return {
+                ...coment,
+                nomeAutor: autor.nome,
+                foto: autor.foto,
+            };
+        }));
+        return comentariosCompletos;
+    }
+    async formatPost(post, autor, alvo) {
+        const comentarios = await this.getComentarios(post.id);
+        return {
+            ...post,
+            nomeAutor: autor.nome,
+            foto: autor.foto,
+            nomeAlvo: alvo.nome,
+            comentarios,
+        };
+    }
+    async getFormattedPosts(posts, getUser, getTarget) {
+        return Promise.all(posts.map(async (post) => {
+            const autor = await getUser(post.idAutor);
+            const alvo = await getTarget(post.idAlvo);
+            return this.formatPost(post, autor, alvo);
+        }));
     }
     async findAllAlvo(id) {
-        let posts = await prisma.post.findMany({ where: { idAlvo: id } });
-        let realPosts = [];
-        const alvo = await prisma.professor.findUnique({ where: { id: id } });
-        for (let i = 0; i < posts.length; i++) {
-            const autor = await prisma.user.findUnique({ where: { id: posts[i].idAutor } });
-            let realpost = posts[i];
-            realpost.nomeAutor = autor.nome;
-            realpost.nomeAlvo = alvo.nome;
-            realPosts.push(realpost);
-        }
-        return (realPosts);
+        const posts = await prisma.post.findMany({ where: { idAlvo: id } });
+        const alvo = await prisma.professor.findUnique({ where: { id } });
+        return this.getFormattedPosts(posts, (id) => prisma.user.findUnique({ where: { id } }), () => Promise.resolve(alvo));
     }
     async findAllAutor(id) {
-        let posts = await prisma.post.findMany({ where: { idAutor: id } });
-        let realPosts = [];
-        const autor = await prisma.user.findUnique({ where: { id: id } });
-        for (let i = 0; i < posts.length; i++) {
-            const alvo = await prisma.professor.findUnique({ where: { id: posts[i].idAlvo } });
-            let realpost = posts[i];
-            realpost.nomeAutor = autor.nome;
-            realpost.nomeAlvo = alvo.nome;
-            realPosts.push(realpost);
-        }
-        return (realPosts);
+        const posts = await prisma.post.findMany({ where: { idAutor: id } });
+        const autor = await prisma.user.findUnique({ where: { id } });
+        return this.getFormattedPosts(posts, () => Promise.resolve(autor), (id) => prisma.professor.findUnique({ where: { id } }));
     }
     update(id, updatePostDto) {
-        return `This action updates a #${id} post`;
+        return prisma.post.update({ where: { id }, data: updatePostDto });
     }
     async remove(id) {
-        await prisma.post.delete({ where: { id: id } });
+        await prisma.post.delete({ where: { id } });
     }
 };
 exports.PostService = PostService;

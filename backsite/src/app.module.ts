@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { ProfessorModule } from './professor/professor.module';
 import { PostModule } from './post/post.module';
+<<<<<<< HEAD
 import { AuthModule } from './auth/auth.module';
 import { JWTStrategy } from './auth/strategies/jwt.strategy';
 
@@ -14,6 +15,12 @@ import { JWTStrategy } from './auth/strategies/jwt.strategy';
       isGlobal: true,
     })
   ],
+=======
+import { ComentarioModule } from './comentario/comentario.module';
+
+@Module({
+  imports: [UserModule, ProfessorModule, PostModule, ComentarioModule],
+>>>>>>> branchAuth
   controllers: [AppController],
   providers: [AppService, JWTStrategy],
 })

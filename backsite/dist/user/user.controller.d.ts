@@ -72,6 +72,18 @@ export declare class UserController {
         bio: string;
         foto: string;
     }>;
+    updateBio(id: string, novaBio: {
+        bio: string;
+    }): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        senha: string;
+        curso: string;
+        departamento: string;
+        bio: string;
+        foto: string;
+    }>;
     update(id: string, updateUserDto: UpdateUserDto): Promise<{
         id: number;
         nome: string;

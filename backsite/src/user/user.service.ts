@@ -53,4 +53,8 @@ export class UserService {
     return await prisma.user.update({where: {id:id}, data: {nome: novoNome.nome}})
   }
 
+  async updateUserBio(id: number, novaBio: {bio: string}){
+    return await prisma.user.update({where: {id: id}, data: {bio: novaBio.bio}})
+  }
+
 }
