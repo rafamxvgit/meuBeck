@@ -6,7 +6,6 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
-@UseGuards(AuthGuard('jwt'))
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
@@ -25,6 +24,7 @@ export class UserController {
     return this.userService.findOne(+id);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Post('login')
   checkLog(@Body() loginDto: LoginUserDto) {
     return this.userService.checkLog(loginDto);

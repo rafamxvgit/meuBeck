@@ -38,6 +38,8 @@ export class AuthService {
             return null;
         }
 
+        console.log(user)
+
         const isPassword = await compareSync(senha, user.senha);//password
 
         if (isPassword) return user;

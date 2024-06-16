@@ -40,6 +40,7 @@ let AuthService = class AuthService {
         catch (err) {
             return null;
         }
+        console.log(user);
         const isPassword = await (0, bcrypt_1.compareSync)(senha, user.senha);
         if (isPassword)
             return user;
