@@ -9,9 +9,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 const client_1 = require("@prisma/client");
+const bcrypt_1 = require("bcrypt");
 const prisma = new client_1.PrismaClient();
 let UserService = class UserService {
     async create(createUserDto) {
+        const hash = (0, bcrypt_1.hashSync)(createUserDto.senha, 10);
+        const user = await prisma.user.create({
+            data: {
+                ...createUserDto,
+                senha: hash,
+            },
+        });
         return await prisma.user.create({ data: createUserDto });
     }
     findAll() {
@@ -31,6 +39,12 @@ let UserService = class UserService {
     }
     async remove(id) {
         return await prisma.user.delete({ where: { id: id } });
+    }
+    async updateUserImagem(id, novaImagem) {
+        return await prisma.user.update({ where: { id: id }, data: { foto: novaImagem.imagem } });
+    }
+    async updateUserNome(id, novoNome) {
+        return await prisma.user.update({ where: { id: id }, data: { nome: novoNome.nome } });
     }
 };
 exports.UserService = UserService;

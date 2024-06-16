@@ -18,6 +18,7 @@ const user_service_1 = require("./user.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const update_user_dto_1 = require("./dto/update-user.dto");
 const login_user_dto_1 = require("./dto/login-user.dto");
+const passport_1 = require("@nestjs/passport");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -39,6 +40,9 @@ let UserController = class UserController {
     }
     updateImagem(id, novaImagem) {
         return this.userService.updateUserImagem(+id, novaImagem);
+    }
+    updateNome(id, novoNome) {
+        return this.userService.updateUserNome(+id, novoNome);
     }
     update(id, updateUserDto) {
         return this.userService.update(+id, updateUserDto);
@@ -92,6 +96,14 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "updateImagem", null);
 __decorate([
+    (0, common_1.Patch)('nome:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", void 0)
+], UserController.prototype, "updateNome", null);
+__decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -108,6 +120,7 @@ __decorate([
 ], UserController.prototype, "remove", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('user'),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('jwt')),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map
